@@ -9,6 +9,17 @@ public static class World
 
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
+    public const int WEAPON_ID_IRON_SWORD = 3;
+    public const int WEAPON_ID_COIN_POUCH = 4;
+    public const int WEAPON_ID_PROOF_OF_GRIT = 5;
+    public const int WEAPON_ID_FLASK_OF_HEALING = 6;
+    public const int WEAPON_ID_POTION_OF_HEALING = 7;
+    public const int WEAPON_ID_VIAL_OF_HEALING = 8;
+    public const int WEAPON_ID_FLASH_OF_STRENGTH = 9;
+    public const int WEAPON_ID_POTION_OF_STRENGTH = 10;
+    public const int WEAPON_ID_LEATHER_TUNIC = 11;
+    public const int WEAPON_ID_IRON_CHESTPLATE = 12;
+    public const int WEAPON_ID_MONSTER_ARMOR = 13;
 
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
@@ -36,11 +47,21 @@ public static class World
         PopulateLocations();
     }
 
-
     public static void PopulateWeapons()
     {
-        Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty sword", 5));
-        Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10));
+        Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusted Sword", 5, 0, 0, true, false));
+        Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0, 0, true, false));
+        Weapons.Add(new Weapon(WEAPON_ID_IRON_SWORD, "Iron Sword", 10, 0, 20, true, false));
+        Weapons.Add(new Weapon(WEAPON_ID_COIN_POUCH, "Coin Pouch", 0, 0, 0, false, false));
+        Weapons.Add(new Weapon(WEAPON_ID_PROOF_OF_GRIT, "Proof of Grit", 0, 0, 0, false, false));
+        Weapons.Add(new Weapon(WEAPON_ID_FLASK_OF_HEALING, "Flask of Healing", 0, 15, 0, false, true));
+        Weapons.Add(new Weapon(WEAPON_ID_POTION_OF_HEALING, "Potion of Healing", 0, 25, 0, false, true));
+        Weapons.Add(new Weapon(WEAPON_ID_VIAL_OF_HEALING, "Vial of Healing", 0, 50, 0, false, true));
+        Weapons.Add(new Weapon(WEAPON_ID_FLASH_OF_STRENGTH, "Flash of Strength", 5, 0, 0, false, true));
+        Weapons.Add(new Weapon(WEAPON_ID_POTION_OF_STRENGTH, "Potion of Strength", 10, 0, 0, false, true));
+        Weapons.Add(new Weapon(WEAPON_ID_LEATHER_TUNIC, "Leather Tunic", 0, 10, 0, true, false));
+        Weapons.Add(new Weapon(WEAPON_ID_IRON_CHESTPLATE, "Iron Chestplate", 0, 30, 0, true, false));
+        Weapons.Add(new Weapon(WEAPON_ID_MONSTER_ARMOR, "Monster Armor", 0, 20, 20, true, false));
     }
 
     public static void PopulateMonsters()
@@ -77,10 +98,10 @@ public static class World
 
 
         Quest clearSpidersForest =
-                    new Quest(
-                        QUEST_ID_COLLECT_SPIDER_SILK,
-                        "Collect spider silk",
-                        "Kill spiders in the spider forest");
+            new Quest(
+                QUEST_ID_COLLECT_SPIDER_SILK,
+                "Collect spider silk",
+                "Kill spiders in the spider forest");
 
 
         Quests.Add(clearAlchemistGarden);
