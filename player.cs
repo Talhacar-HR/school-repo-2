@@ -4,6 +4,7 @@ class Player
     public int CurrentHitPoints;
     public int MaximumHitPoints;
     public int Attack;
+    bool InBattle;
     public List<Inventory> Inventory;
     public Weapon CurrentWeapon;
     public Weapon CurrentArmor;
@@ -14,5 +15,6 @@ class Player
         Name = name;
         CurrentHitPoints = currentHitPoints;
         MaximumHitPoints = maximumHitPoints;
+        InBattle = false;
     }
 }
