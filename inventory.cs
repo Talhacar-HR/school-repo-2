@@ -1,12 +1,13 @@
+using System.Security;
+
 class Inventory
 {
     public List<Weapon> inventory = [];
 
-    public void ViewInventory(object Weapon)
+    public void ViewInventory()
     {
-        break;
+        Console.WriteLine(inventory);
     }
-
     public void AddItem(Weapon weapon)
     {
         if (inventory.Count < 20)
@@ -21,89 +22,25 @@ class Inventory
         }
     }
 
-    public void DropItem()
+    public void DropItem(Weapon weapon)
     {
-        break;
+        inventory.Remove($"{weapon}");
     }
 
-    public void SwitchWeapon()
+    public void SwitchWeapon(Weapon weapon, Player player)
     {
-        break;
+        foreach(Weapon item in inventory)
+        {
+            if (item == weapon)
+            {
+                player.currentWeapon = item;
+            }
+        }
     }
 
     public void UseItem()
     {
         break;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
