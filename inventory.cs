@@ -1,3 +1,5 @@
+using System.Security;
+
 class Inventory
 {
     public List<Weapon> inventory = [];
@@ -22,12 +24,18 @@ class Inventory
 
     public void DropItem(Weapon weapon)
     {
-        inventory.Remove(weapon);
+        inventory.Remove($"{weapon}");
     }
 
-    public void SwitchWeapon()
+    public void SwitchWeapon(Weapon weapon, Player player)
     {
-        break;
+        foreach(Weapon item in inventory)
+        {
+            if (item == weapon)
+            {
+                player.currentWeapon = item;
+            }
+        }
     }
 
     public void UseItem()
