@@ -6,14 +6,17 @@ class Inventory
 
     public void ViewInventory()
     {
-        Console.WriteLine(inventory);
+        foreach(Weapon item in inventory)
+        {
+            Console.WriteLine(item.Name);
+        }
     }
-    public void AddItem(Weapon weapon)
+    public void AddItem(Weapon addedWeapon)
     {
         if (inventory.Count < 20)
         {
-            inventory.Add(weapon);
-            Console.WriteLine($"{weapon.Name} added to inventory.");
+            inventory.Add(addedWeapon);
+            Console.WriteLine($"{addedWeapon.Name} added to inventory.");
         }
         else
         {
@@ -22,23 +25,23 @@ class Inventory
         }
     }
 
-    public void DropItem(Weapon weapon)
+    public void DropItem(Weapon droppedWeapon)
     {
-        inventory.Remove($"{weapon}");
+        inventory.Remove($"{droppedWeapon}");
     }
 
-    public void SwitchWeapon(Weapon weapon, Player player)
+    public void SwitchWeapon(Weapon selectedWeapon, Player currentPlayer)
     {
         foreach(Weapon item in inventory)
         {
-            if (item == weapon)
+            if (item == selectedWeapon)
             {
-                player.currentWeapon = item;
+                currentPlayer.CurrentWeapon = item;
             }
         }
     }
 
-    public void UseItem()
+    public void UseItem(Weapon selectedWeapon)
     {
         break;
     }
