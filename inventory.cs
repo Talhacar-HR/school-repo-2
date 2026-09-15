@@ -9,6 +9,7 @@ class Inventory
         foreach(Weapon item in inventory)
         {
             Console.WriteLine(item.Name);
+            // Needs testing to add more info eg description, stats etc
         }
     }
     public void AddItem(Weapon addedWeapon)
@@ -26,23 +27,42 @@ class Inventory
     }
 
     public void DropItem(Weapon droppedWeapon)
+    // What do we want to send from program.cs? The entire object selected in the drop item menu, or just the name?
     {
-        inventory.Remove($"{droppedWeapon}");
+        bool found = false;
+        foreach (Weapon item in inventory)
+        {
+            if (item == droppedWeapon)
+            {
+                Console.WriteLine($"You dropped {item.Name}.");
+                inventory.Remove(item);
+                found == true;
+                break;
+            }
+        }
+        if (found == false)
+        {
+            Console.WriteLine("No such item found in your inventory!");
+        }
     }
 
     public void SwitchWeapon(Weapon selectedWeapon, Player currentPlayer)
+    // Needs to be tested; is "Player currentPlayer" neccesary?
+    // Also needs further updating to deny usage when in a battle
     {
         foreach(Weapon item in inventory)
         {
             if (item == selectedWeapon)
             {
                 currentPlayer.CurrentWeapon = item;
+                Console.WriteLine($"You selected {item.Name}.");
             }
         }
     }
 
     public void UseItem(Weapon selectedWeapon)
     {
+        // Cannot be implemented yet; battle logic needs to be added first
         break;
     }
 
