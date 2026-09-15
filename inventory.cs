@@ -64,6 +64,7 @@ class Inventory
     public void UseItem(Weapon selectedWeapon)
     {
         // Cannot be implemented yet; battle logic needs to be added first
+        // This will cover potion usage during battle, aswell as coin pouch usage during shops later on
         break;
     }
 
