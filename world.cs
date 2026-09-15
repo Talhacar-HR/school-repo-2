@@ -83,23 +83,23 @@ public static class World
             new Quest(
                 QUEST_ID_CLEAR_ALCHEMIST_GARDEN,
                 "Clear the alchemist's garden",
-                "Kill rats in the alchemist's garden ");
-
-
+                "Kill 3 rats in the alchemist's garden",
+                new List<Weapon> { WeaponByID(WEAPON_ID_PROOF_OF_GRIT) }
+                );
 
         Quest clearFarmersField =
             new Quest(
                 QUEST_ID_CLEAR_FARMERS_FIELD,
                 "Clear the farmer's field",
-                "Kill snakes in the farmer's field");
-
+                "Kill 3 snakes in the farmer's field",
+                new List<Weapon>());
 
         Quest clearSpidersForest =
             new Quest(
                 QUEST_ID_COLLECT_SPIDER_SILK,
                 "Collect spider silk",
-                "Kill spiders in the spider forest");
-
+                "Kill 3 spiders in the spider forest",
+                new List<Weapon>());
 
         Quests.Add(clearAlchemistGarden);
         Quests.Add(clearFarmersField);
@@ -196,8 +196,6 @@ public static class World
 
         return null;
     }
-
-
 
     public static Monster MonsterByID(int id)
     {
