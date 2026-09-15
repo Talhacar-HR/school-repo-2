@@ -1,41 +1,36 @@
+using System.Net.ServerSentEvents;
+
 class Inventory
 {
     public List<Weapon> inventory = [];
+    public Weapon currentweapon; 
 
-    public void ViewInventory(object Weapon)
+    public void ViewInventory()
     {
-        break;
+        Console.WriteLine(inventory);
     }
 
     public void AddItem(Weapon weapon)
     {
-        if (inventory.Count < 20)
-        {
-            inventory.Add(weapon);
-            Console.WriteLine($"{weapon.Name} added to inventory.");
-        }
-        else
-        {
-            Console.WriteLine("Inventory is full.");
-            // Further update needed, ask player if they want to drop/replace item from inventory to make space
-        }
+        ...
     }
 
-    public void DropItem()
+    public void DropItem(Weapon weapon)
     {
-        break;
+        inventory.Remove(weapon);
     }
 
-    public void SwitchWeapon()
+    public void SwitchWeapon(Weapon weapon)
     {
-        break;
+        ...
     }
 
-    public void UseItem()
+    public void UseItem(Weapon weapon)
     {
-        break;
+        ...
     }
 
+   
 
 
 
