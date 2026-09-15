@@ -6,7 +6,6 @@ public class Location
 
     public string Description;
 
-
     public Quest QuestAvailableHere;
 
     public Monster MonsterLivigHere;
