@@ -4,7 +4,7 @@ class Player
     public int CurrentHitPoints;
     public int MaximumHitPoints;
     public int Attack;
-    bool InBattle;
+    public bool InBattle;
     public List<Inventory> Inventory;
     public Weapon CurrentWeapon;
     public Weapon CurrentArmor;
