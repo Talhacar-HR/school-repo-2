@@ -27,7 +27,15 @@ class Inventory
 
     public void DropItem(Weapon droppedWeapon)
     {
-        inventory.Remove($"{droppedWeapon}");
+        foreach (Weapon item in inventory)
+        {
+            if (item == droppedWeapon)
+            {
+                inventory.Remove(item);
+                Console.WriteLine($"You dropped {item.Name}.");
+                break;
+            }
+        }
     }
 
     public void SwitchWeapon(Weapon selectedWeapon, Player currentPlayer)
@@ -37,13 +45,20 @@ class Inventory
             if (item == selectedWeapon)
             {
                 currentPlayer.CurrentWeapon = item;
+                Console.WriteLine($"You selected {item.Name}.");
             }
         }
     }
 
     public void UseItem(Weapon selectedWeapon)
     {
-        break;
+        foreach(Weapon item in inventory)
+        {
+            if (item == selectedWeapon)
+            {
+                Console.WriteLine($"You used {item.Name}.");
+            }
+        }
     }
 
 }
