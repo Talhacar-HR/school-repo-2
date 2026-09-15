@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 public class Weapon
 {
 	public int ID;
@@ -7,8 +9,9 @@ public class Weapon
     public int Crit;
     public bool Equippable;
     public bool Usable;
+	public string Description;
 
-	public Weapon(int id, string name, int damage, int health, int crit, bool equippable, bool usable)
+	public Weapon(int id, string name, int damage, int health, int crit, bool equippable, bool usable, string description)
 	{
 		ID = id;
 		Name = name;
@@ -17,5 +20,6 @@ public class Weapon
         Crit = crit;
         Equippable = equippable;
         Usable = usable;
+		Description = description;
 	}
 }
