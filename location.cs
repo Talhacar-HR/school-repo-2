@@ -74,7 +74,6 @@ public class Location
             {
                 return currentLocation.LocationToWest;
             }
-            
             Console.WriteLine("You can't go that way.");
             return null;
             
