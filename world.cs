@@ -9,6 +9,17 @@ public static class World
 
     public const int WEAPON_ID_RUSTY_SWORD = 1;
     public const int WEAPON_ID_CLUB = 2;
+    public const int WEAPON_ID_IRON_SWORD = 3;
+    public const int WEAPON_ID_COIN_POUCH = 4;
+    public const int WEAPON_ID_PROOF_OF_GRIT = 5;
+    public const int WEAPON_ID_FLASK_OF_HEALING = 6;
+    public const int WEAPON_ID_POTION_OF_HEALING = 7;
+    public const int WEAPON_ID_VIAL_OF_HEALING = 8;
+    public const int WEAPON_ID_FLASK_OF_STRENGTH = 9;
+    public const int WEAPON_ID_POTION_OF_STRENGTH = 10;
+    public const int WEAPON_ID_LEATHER_TUNIC = 11;
+    public const int WEAPON_ID_IRON_CHESTPLATE = 12;
+    public const int WEAPON_ID_MONSTER_ARMOR = 13;
 
     public const int MONSTER_ID_RAT = 1;
     public const int MONSTER_ID_SNAKE = 2;
@@ -36,11 +47,21 @@ public static class World
         PopulateLocations();
     }
 
-
     public static void PopulateWeapons()
     {
-        Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusty sword", 5));
-        Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10));
+        Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusted Sword", 5, 0, 0, true, false, "WEAPON", "An old, rusted sword. Raises damage by 10."));
+        Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0, 0, true, false, "WEAPON", "A trusty wooden club. Raises damage by 10."));
+        Weapons.Add(new Weapon(WEAPON_ID_IRON_SWORD, "Iron Sword", 10, 0, 20, true, false, "WEAPON", "An excellent iron sword. Raises damage by 10, and gives 20 CRIT."));
+        Weapons.Add(new Weapon(WEAPON_ID_COIN_POUCH, "Coin Pouch", 0, 0, 0, false, false, "OTHER", "A pouch with coins. Spend wisely."));
+        Weapons.Add(new Weapon(WEAPON_ID_PROOF_OF_GRIT, "Proof of Grit", 0, 0, 0, false, false, "OTHER", "A Proof of Grit obtained by completely quests. Needed to pass the guard."));
+        Weapons.Add(new Weapon(WEAPON_ID_FLASK_OF_HEALING, "Flask of Healing", 0, 15, 0, false, true, "OTHER", "A flask of healing. Heals 15 HP."));
+        Weapons.Add(new Weapon(WEAPON_ID_POTION_OF_HEALING, "Potion of Healing", 0, 25, 0, false, true, "OTHER", "A potion of healing. Heals 25 HP."));
+        Weapons.Add(new Weapon(WEAPON_ID_VIAL_OF_HEALING, "Vial of Healing", 0, 50, 0, false, true, "OTHER", "A vial of healing. Heals 50 HP."));
+        Weapons.Add(new Weapon(WEAPON_ID_FLASK_OF_STRENGTH, "Flask of Strength", 5, 0, 0, false, true, "OTHER", "A flask of strength. Raises attack by 5 for three attacks."));
+        Weapons.Add(new Weapon(WEAPON_ID_POTION_OF_STRENGTH, "Potion of Strength", 10, 0, 0, false, true, "OTHER", "A potion of strength. Raises attack by 10 for two attacks."));
+        Weapons.Add(new Weapon(WEAPON_ID_LEATHER_TUNIC, "Leather Tunic", 0, 10, 0, true, false, "ARMOR", "A soft leather tunic. Raises Max HP by 10."));
+        Weapons.Add(new Weapon(WEAPON_ID_IRON_CHESTPLATE, "Iron Chestplate", 0, 30, 0, true, false, "ARMOR", "A sturdy iron chestplate. Raises Max HP by 30."));
+        Weapons.Add(new Weapon(WEAPON_ID_MONSTER_ARMOR, "Monster Armor", 0, 20, 20, true, false, "ARMOR", "A handcrafted set of monster armor. Raises Max HP by 20 and gives 20 CRIT."));
     }
 
     public static void PopulateMonsters()
@@ -53,7 +74,6 @@ public static class World
 
         Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 10, 40, 40);
 
-
         Monsters.Add(rat);
         Monsters.Add(snake);
         Monsters.Add(giantSpider);
@@ -65,23 +85,23 @@ public static class World
             new Quest(
                 QUEST_ID_CLEAR_ALCHEMIST_GARDEN,
                 "Clear the alchemist's garden",
-                "Kill rats in the alchemist's garden ");
-
-
+                "Kill 3 rats in the alchemist's garden",
+                new List<Weapon> { WeaponByID(WEAPON_ID_PROOF_OF_GRIT) }
+                );
 
         Quest clearFarmersField =
             new Quest(
                 QUEST_ID_CLEAR_FARMERS_FIELD,
                 "Clear the farmer's field",
-                "Kill snakes in the farmer's field");
-
+                "Kill 3 snakes in the farmer's field",
+                new List<Weapon>());
 
         Quest clearSpidersForest =
-                    new Quest(
-                        QUEST_ID_COLLECT_SPIDER_SILK,
-                        "Collect spider silk",
-                        "Kill spiders in the spider forest");
-
+            new Quest(
+                QUEST_ID_COLLECT_SPIDER_SILK,
+                "Collect spider silk",
+                "Kill 3 spiders in the spider forest",
+                new List<Weapon>());
 
         Quests.Add(clearAlchemistGarden);
         Quests.Add(clearFarmersField);
@@ -178,8 +198,6 @@ public static class World
 
         return null;
     }
-
-
 
     public static Monster MonsterByID(int id)
     {
