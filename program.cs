@@ -1,102 +1,51 @@
 using System;
+
 static class Program
 {
     static void Main()
-    { 
-        Console.WriteLine("Wich way doe you want to move N,E,S,W");
-        string way = Console.ReadLine().ToUpper();
-    
-        int location_y = -1;
-        int location_x = 0;
-        
-        if (way == "N")
-        {
-            location_y += 1;
-        }
-        if (way == "S")
-        {
-            location_y -= 1;
-        }
-        if (way == "E")
-        {
-            location_x += 1;
-        }
-        if (way == "W")
-        {
-            location_x -= 1;
-        }
+    {
+        Location currentLocation = World.LocationByID(World.LOCATION_ID_HOME);
 
-        if (location_x == 0 && location_y == -1)
-        {    
+        while (true)
+        {
+            Console.WriteLine();
             Console.WriteLine("  P");
             Console.WriteLine("  A");
             Console.WriteLine("VFTGBS");
             Console.WriteLine("  H");
-            Console.WriteLine("Your at Your house");
-        }
-        else if (location_x == 0 && location_y == 0)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Town square");
-        }
-        else if (location_x == -1 && location_y == 0)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Farmer");
-        }
-        else if (location_x == -2 && location_y == 0)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Farmer’s field");
-        }
-        else if (location_x == 0 && location_y == 2)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Alchemist’s hut");
-        }
-        else if (location_x == 0 && location_y == 3)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Alchemist’s garden");
-        }
-        else if (location_x == 1 && location_y == 0)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Guard post");
-        }
-        else if (location_x == 2 && location_y == 0)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Bridge");
-        }
-        else if (location_x == 3 && location_y == 0)
-        {    
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at Spiderman forest");
+            Console.WriteLine("Your at " + currentLocation.Name);
+            Console.WriteLine(currentLocation.Description);
+
+            Console.WriteLine("Which way do you want to move N,E,S,W");
+            string way = Console.ReadLine().ToUpper();
+
+            Location destination = null;
+
+            if (way == "N")
+            {
+                destination = currentLocation.LocationToNorth;
+            }
+            else if (way == "S")
+            {
+                destination = currentLocation.LocationToSouth;
+            }
+            else if (way == "E")
+            {
+                destination = currentLocation.LocationToEast;
+            }
+            else if (way == "W")
+            {
+                destination = currentLocation.LocationToWest;
+            }
+
+            if (destination == null)
+            {
+                Console.WriteLine("You can't go that way.");
+            }
+            else
+            {
+                currentLocation = destination;
+            }
         }
     }
 }

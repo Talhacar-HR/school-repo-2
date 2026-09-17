@@ -8,7 +8,7 @@ public class Location
 
     public Quest QuestAvailableHere;
 
-    public Monster MonsterLivigHere;
+    public Monster MonsterLivingHere;
 
     public Location LocationToNorth;
 
@@ -18,17 +18,13 @@ public class Location
 
     public Location LocationToWest;
 
-    public Location(int id, string name,string description, Quest questavailablehere, Monster MonsterLivigHere, Location locationtonorth, Location locationtoeast, Location locationtosouth, Location locationtowest)
+    public Location(int id, string name, string description, Quest questavailablehere, Monster monsterlivinghere)
     {
-    ID = id;
-    Name = name;
-    Description = description;
-    QuestAvailableHere = questavailablehere;
-    MonsterLivigHere = monsterLivigHere;
-    LocationToNorth = locationtonorth;
-    LocationToEast = locationtoeast;
-    LocationToSouth = locationtosouth;
-    LocationToWest = locationtowest;
+        ID = id;
+        Name = name;
+        Description = description;
+        QuestAvailableHere = questavailablehere;
+        MonsterLivingHere = monsterlivinghere;
     }
 }
 
