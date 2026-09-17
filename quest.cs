@@ -3,7 +3,7 @@ class Quest
     int ID;
     string Name;
     string Description;
-    List<Weapon> Reward;
+    public List<Weapon> Reward;
 
     public Quest(int id, string name, string description, List<Weapon> reward)
     {

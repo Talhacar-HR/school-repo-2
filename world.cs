@@ -66,11 +66,13 @@ public static class World
 
     public static void PopulateMonsters()
     {
-        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 1, 3, 3);
+        Monster rat = new Monster(MONSTER_ID_RAT, "rat", 5, 30, 30);
 
-        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 10, 7, 7);
 
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 3, 10, 10);
+        Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 8, 20, 20);
+
+
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 10, 40, 40);
 
         Monsters.Add(rat);
         Monsters.Add(snake);
@@ -92,14 +94,14 @@ public static class World
                 QUEST_ID_CLEAR_FARMERS_FIELD,
                 "Clear the farmer's field",
                 "Kill 3 snakes in the farmer's field",
-                new List<Weapon>());
+                new List<Weapon> {WeaponByID(WEAPON_ID_PROOF_OF_GRIT)});
 
         Quest clearSpidersForest =
             new Quest(
                 QUEST_ID_COLLECT_SPIDER_SILK,
                 "Collect spider silk",
                 "Kill 3 spiders in the spider forest",
-                new List<Weapon>());
+                new List<Weapon> {WeaponByID(WEAPON_ID_PROOF_OF_GRIT)});
 
         Quests.Add(clearAlchemistGarden);
         Quests.Add(clearFarmersField);
