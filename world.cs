@@ -94,14 +94,14 @@ public static class World
                 QUEST_ID_CLEAR_FARMERS_FIELD,
                 "Clear the farmer's field",
                 "Kill 3 snakes in the farmer's field",
-                new List<Weapon>());
+                new List<Weapon> {WeaponByID(WEAPON_ID_PROOF_OF_GRIT)});
 
         Quest clearSpidersForest =
             new Quest(
                 QUEST_ID_COLLECT_SPIDER_SILK,
                 "Collect spider silk",
                 "Kill 3 spiders in the spider forest",
-                new List<Weapon>());
+                new List<Weapon> {WeaponByID(WEAPON_ID_PROOF_OF_GRIT)});
 
         Quests.Add(clearAlchemistGarden);
         Quests.Add(clearFarmersField);
