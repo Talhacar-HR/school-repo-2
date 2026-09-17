@@ -8,15 +8,6 @@ static class Program
 
         while (true)
         {
-            Console.WriteLine();
-            Console.WriteLine("  P");
-            Console.WriteLine("  A");
-            Console.WriteLine("VFTGBS");
-            Console.WriteLine("  H");
-            Console.WriteLine("Your at " + currentLocation.Name);
-            Console.WriteLine(currentLocation.Description);
-
-            Console.WriteLine("Which way do you want to move N,E,S,W");
             string way = Console.ReadLine().ToUpper();
 
             Location destination = null;
