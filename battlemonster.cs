@@ -8,10 +8,17 @@ public class BattleMonster
         if (playerLocation.ID == world.LOCATION_ID_FARM_FIELD || playerLocation.ID == world.LOCATION_ID_ALCHEMISTS_GARDEN || playerLocation.ID == world.LOCATION_ID_SPIDER_FIELD)
         {
             in_battle = true;
+            attack_a_monster();
         }
     }
 
-    public void attack_a_monster(Monster monster)
+    public void attack_a_monster(Monster monster, Player player)
+    {
+        
+        System.Console.WriteLine("Type 'a' to attack");
+
+        string attack = Console.ReadLine();
+    }
     // enemy_power = enemy_damage * 2;
 
     // underpowered = enemy_power >= player_health 
