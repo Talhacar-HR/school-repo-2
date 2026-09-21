@@ -28,6 +28,7 @@ class Inventory
 
     public void DropItem(Weapon droppedWeapon)
     // What do we want to send from program.cs? The entire object selected in the drop item menu, or just the name?
+    // In world.cs there is a function called "WeaponByID", best to use that maybe?
     {
         bool found = false;
         foreach (Weapon item in inventory)
@@ -63,6 +64,7 @@ class Inventory
     public void UseItem(Weapon selectedWeapon)
     {
         // Cannot be implemented yet; battle logic needs to be added first
+        // This will cover potion usage during battle, aswell as coin pouch usage during shops later on
         break;
     }
 
