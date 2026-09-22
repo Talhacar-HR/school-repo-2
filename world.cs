@@ -72,7 +72,7 @@ public static class World
         Monster snake = new Monster(MONSTER_ID_SNAKE, "snake", 8, 20, 20);
 
 
-        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 10, 40, 40);
+        Monster giantSpider = new Monster(MONSTER_ID_GIANT_SPIDER, "giant spider", 10, 40, 40, true);
 
         Monsters.Add(rat);
         Monsters.Add(snake);
