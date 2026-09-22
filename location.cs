@@ -28,7 +28,7 @@ public class Location
     }
 
 
-    static void DisplayLocation(Location location)
+    static void DisplayLocation(Player player)
     {
         Console.WriteLine();
         Console.WriteLine("  P");
@@ -42,11 +42,11 @@ public class Location
 
     static Location Move(Player player)
     {
-        if(player.CurrentLocation == LOCATION_ID_TOWN_SQUARE)
+        if(player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
         {
             Console.WriteLine("Which way do you want to move N,E,S,W, or R to rest");
         }
-        else
+        else 
         {
             Console.WriteLine("Which way do you want to move N,E,S,W");
         }
@@ -88,19 +88,19 @@ public class Location
     {
             if (way == "N")
             {
-                return currentLocation.LocationToNorth;
+                return currentlocation.LocationToNorth;
             }
             else if (way == "S")
             {
-                return currentLocation.LocationToSouth;
+                return currentlocation.LocationToSouth;
             }
             else if (way == "E")
             {
-                return currentLocation.LocationToEast;
+                return currentlocation.LocationToEast;
             }
             else if (way == "W")
             {
-                return currentLocation.LocationToWest;
+                return currentlocation.LocationToWest;
             }
             Console.WriteLine("You can't go that way.");
             return null;
