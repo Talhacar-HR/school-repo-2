@@ -15,7 +15,7 @@ static class Program
         {
             Location previousLocation = player.CurrentLocation;
 
-            Location.DisplayLocation(player.CurrentLocation);
+            Location.DisplayLocation(player);
             player.CurrentLocation = Location.Move(player);
 
             // Controleer of er een monster op de nieuwe locatie is
