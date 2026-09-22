@@ -1,15 +1,15 @@
-using System.Security;
+using System;
+using System.Collections.Generic;
 
-class Inventory
+public class Inventory
 {
-    public List<Weapon> inventory = [];
+    public List<Weapon> inventory = new List<Weapon>();
 
     public void ViewInventory()
     {
-        foreach(Weapon item in inventory)
+        foreach (Weapon item in inventory)
         {
             Console.WriteLine(item.Name);
-            // Needs testing to add more info eg description, stats etc
         }
     }
     public void AddItem(Weapon addedWeapon)
@@ -22,12 +22,10 @@ class Inventory
         else
         {
             Console.WriteLine("Inventory is full.");
-            // Further update needed, ask player if they want to drop/replace item from inventory to make space
         }
     }
 
     public void DropItem(Weapon droppedWeapon)
-    // What do we want to send from program.cs? The entire object selected in the drop item menu, or just the name?
     {
         bool found = false;
         foreach (Weapon item in inventory)
@@ -36,34 +34,34 @@ class Inventory
             {
                 Console.WriteLine($"You dropped {item.Name}.");
                 inventory.Remove(item);
-                found == true;
+                found = true;
                 break;
             }
         }
-        if (found == false)
+        if (!found)
         {
             Console.WriteLine("No such item found in your inventory!");
         }
     }
 
-    public void SwitchWeapon(Weapon selectedWeapon, Player currentPlayer)
-    // Needs to be tested; is "Player currentPlayer" neccesary?
-    // Also needs further updating to deny usage when in a battle
+    public void SwitchWeapon(Weapon switchingWeapon, Player currentPlayer)
     {
-        foreach(Weapon item in inventory)
+        foreach (Weapon item in inventory)
         {
-            if (item == selectedWeapon)
+            if (item == switchingWeapon)
             {
                 currentPlayer.CurrentWeapon = item;
                 Console.WriteLine($"You selected {item.Name}.");
+                return;
             }
         }
+
+        Console.WriteLine("That item is not in your inventory.");
     }
 
     public void UseItem(Weapon selectedWeapon)
     {
-        // Cannot be implemented yet; battle logic needs to be added first
-        break;
+        Console.WriteLine("Item use is not implemented yet. This will be added once battle logic is finished.");
     }
 
 }

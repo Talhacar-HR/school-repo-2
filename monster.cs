@@ -1,19 +1,26 @@
-class Monster
+public class Monster
 {
-    int ID;
-    string Name;
-    int MaximumDamage;
-    int CurrentHitPoints;
-    int MaximumHitPoints;
-    bool Boss;
+    public int ID;
+    public string Name;
+    public int MaximumDamage;
+    public int CurrentHitPoints;
+    public int MaximumHitPoints;
+    public bool Boss;
 
-    public Monster(int id, string name, int maximumDamage, int currentHitPoints, int maximumHitPoints, bool boss)
+    public Monster(int id, string name, int maximumdamage, int currenthitpoints, int maximumhitpoints, bool boss = false)
     {
         ID = id;
         Name = name;
-        MaximumDamage = maximumDamage;
-        CurrentHitPoints = currentHitPoints;
-        MaximumHitPoints = maximumHitPoints;
+        MaximumDamage = maximumdamage;
+        CurrentHitPoints = currenthitpoints;
+        MaximumHitPoints = maximumhitpoints;
         Boss = boss;
+
+        if (boss)
+        {
+            MaximumDamage *= 2;
+            MaximumHitPoints *= 2;
+            CurrentHitPoints = MaximumHitPoints;
+        }
     }
 }
