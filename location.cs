@@ -28,31 +28,59 @@ public class Location
     }
 
 
-     static void DisplayLocation(Location location)
+    static void DisplayLocation(Location location)
     {
         Console.WriteLine();
         Console.WriteLine("  P");
         Console.WriteLine("  A");
         Console.WriteLine("VFTGBS");
         Console.WriteLine("  H");
-        Console.WriteLine("Your at " + location.Name);
-        Console.WriteLine(location.Description);
+        Console.WriteLine("Your at " + player.CurrentLocation.Name);
+        Console.WriteLine(player.CurrentLocation.Description);
+        Console.WriteLine($"HP: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
     }
 
-    static Location Move(Location currentlocation)
+    static Location Move(Player player)
     {
-        Console.WriteLine("Which way do you want to move N,E,S,W");
+        if(player.CurrentLocation == LOCATION_ID_TOWN_SQUARE)
+        {
+            Console.WriteLine("Which way do you want to move N,E,S,W, or R to rest");
+        }
+        else
+        {
+            Console.WriteLine("Which way do you want to move N,E,S,W");
+        }
+
         string way = Console.ReadLine().ToUpper();
 
-        Location destination = GetDestination(currentLocation, way);
-    
+        if (way == "R")
+        {
+            Rest(player);
+            return player.CurrentLocation;
+        }
+
+        Location destination = GetDestination(player.CurrentLocation, way);
+
         if (destination == null)
         {
             Console.WriteLine("You can't go that way.");
-            return currentLocation;
+            return player.CurrentLocation;
         }
 
         return destination;
+    }
+
+    static void Rest(Player player)
+    {
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
+        {
+            player.CurrentHitPoints = player.MaximumHitPoints;
+            Console.WriteLine("You rest at the town square. Your HP is fully restored.");
+        }
+        else
+        {
+            Console.WriteLine("You can only rest at the town square.");
+        }
     }
 
 
