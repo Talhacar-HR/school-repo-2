@@ -5,9 +5,9 @@ public class Monster
     public int MaximumDamage;
     public int CurrentHitPoints;
     public int MaximumHitPoints;
-    bool Boss;
+    public bool Boss;
 
-    public Monster(int id, string name, int maximumdamage, int currenthitpoints, int maximumhitpoints, bool boss)
+    public Monster(int id, string name, int maximumdamage, int currenthitpoints, int maximumhitpoints, bool boss = false)
     {
         ID = id;
         Name = name;
@@ -15,5 +15,12 @@ public class Monster
         CurrentHitPoints = currenthitpoints;
         MaximumHitPoints = maximumhitpoints;
         Boss = boss;
+
+        if (boss)
+        {
+            MaximumDamage *= 2;
+            MaximumHitPoints *= 2;
+            CurrentHitPoints = MaximumHitPoints;
+        }
     }
 }
