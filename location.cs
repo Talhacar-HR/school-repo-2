@@ -66,7 +66,34 @@ public class Location
             return player.CurrentLocation;
         }
 
+        if (player.CurrentLocation.ID == World.LOCATION_ID_GUARD_POST
+            && destination.ID == World.LOCATION_ID_BRIDGE
+            && !HasEnoughProofOfGrit(player))
+        {
+            Console.WriteLine("The guard stops you. You need at least two Proof of Grit to pass.");
+            return player.CurrentLocation;
+        }
+
         return destination;
+    }
+
+    static bool HasEnoughProofOfGrit(Player player)
+    {
+        if (player.Inventory.Count == 0)
+        {
+            return false;
+        }
+
+        int count = 0;
+        foreach (Weapon item in player.Inventory[0].inventory)
+        {
+            if (item.ID == World.WEAPON_ID_PROOF_OF_GRIT)
+            {
+                count += 1;
+            }
+        }
+
+        return count >= 2;
     }
 
     public static void Rest(Player player)
