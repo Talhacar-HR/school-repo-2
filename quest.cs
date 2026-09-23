@@ -48,10 +48,41 @@ public class Quest
 
     public static void ViewQuests()
     {
+        bool hasQuests = false;
+
         foreach (Quest quest in World.Quests)
         {
-            ViewQuest(quest);
+            if (quest.IsActive || quest.IsCompleted)
+            {
+                ViewQuest(quest);
+                hasQuests = true;
+            }
         }
+
+        if (!hasQuests)
+        {
+            Console.WriteLine("You have not accepted any quests yet.");
+        }
+    }
+
+    public static Quest QuestForMonster(int monsterId)
+    {
+        if (monsterId == World.MONSTER_ID_RAT)
+        {
+            return World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN);
+        }
+
+        if (monsterId == World.MONSTER_ID_SNAKE)
+        {
+            return World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD);
+        }
+
+        if (monsterId == World.MONSTER_ID_GIANT_SPIDER)
+        {
+            return World.QuestByID(World.QUEST_ID_COLLECT_SPIDER_SILK);
+        }
+
+        return null;
     }
 
     public static void StartQuest(Quest quest)
