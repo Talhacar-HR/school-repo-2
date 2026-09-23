@@ -39,16 +39,9 @@ public class Location
         Console.WriteLine($"HP: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
     }
 
-    static Location Move(Player player)
+    public static Location Move(Player player)
     {
-        if(player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
-        {
-            Console.WriteLine("Which way do you want to move N,E,S,W, or R to rest");
-        }
-        else 
-        {
-            Console.WriteLine("Which way do you want to move N,E,S,W");
-        }
+        Console.WriteLine("Which way do you want to move N,E,S,W");
 
         string way = Console.ReadLine().ToUpper();
 
