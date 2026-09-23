@@ -8,7 +8,7 @@ public class Location
 
     public Quest QuestAvailableHere;
 
-    public Monster MonsterLivigHere;
+    public Monster MonsterLivingHere;
 
     public Location LocationToNorth;
 
@@ -18,18 +18,89 @@ public class Location
 
     public Location LocationToWest;
 
-    public Location(int id, string name,string description, Quest questavailablehere, Monster MonsterLivigHere, Location locationtonorth, Location locationtoeast, Location locationtosouth, Location locationtowest)
+    public Location(int id, string name, string description, Quest questavailablehere, Monster monsterlivinghere)
     {
-    ID = id;
-    Name = name;
-    Description = description;
-    QuestAvailableHere = questavailablehere;
-    MonsterLivigHere = monsterLivigHere;
-    LocationToNorth = locationtonorth;
-    LocationToEast = locationtoeast;
-    LocationToSouth = locationtosouth;
-    LocationToWest = locationtowest;
+        ID = id;
+        Name = name;
+        Description = description;
+        QuestAvailableHere = questavailablehere;
+        MonsterLivingHere = monsterlivinghere;
+    }
+
+    public static void DisplayLocation(Player player, bool showMap = false)
+    {
+        Console.WriteLine();
+        Console.WriteLine("  P");
+        Console.WriteLine("  A");
+        Console.WriteLine("VFTGBS");
+        Console.WriteLine("  H");
+        Console.WriteLine("Your at " + player.CurrentLocation.Name);
+        Console.WriteLine(player.CurrentLocation.Description);
+        Console.WriteLine($"HP: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
+
+        if (showMap)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Map:");
+            Console.WriteLine("                 [Alchemist's garden]");
+            Console.WriteLine("                         |");
+            Console.WriteLine("[Farmer's field] - [Farmhouse] - [Town square] - [Guard post] - [Bridge] - [Spider forest]");
+            Console.WriteLine("                         |");
+            Console.WriteLine("                [Alchemist's hut]");
+            Console.WriteLine();
+            Console.WriteLine("You are currently at: " + player.CurrentLocation.Name);
+        }
+    }
+
+    public static Location Move(Player player)
+    {
+        Console.WriteLine("Which way do you want to move N, E, S, W");
+
+        string way = Console.ReadLine().ToUpper();
+
+        Location destination = GetDestination(player.CurrentLocation, way);
+
+        if (destination == null)
+        {
+            Console.WriteLine("You can't go that way.");
+            return player.CurrentLocation;
+        }
+
+        return destination;
+    }
+
+    public static void Rest(Player player)
+    {
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
+        {
+            player.CurrentHitPoints = player.MaximumHitPoints;
+            Console.WriteLine("You rest at the town square. Your HP is fully restored.");
+        }
+        else
+        {
+            Console.WriteLine("You can only rest at the town square.");
+        }
+    }
+
+    static Location GetDestination(Location currentlocation, string way)
+    {
+            if (way == "N")
+            {
+                return currentlocation.LocationToNorth;
+            }
+            else if (way == "S")
+            {
+                return currentlocation.LocationToSouth;
+            }
+            else if (way == "E")
+            {
+                return currentlocation.LocationToEast;
+            }
+            else if (way == "W")
+            {
+                return currentlocation.LocationToWest;
+            }
+            Console.WriteLine("You can't go that way.");
+            return null;
     }
 }
-
-

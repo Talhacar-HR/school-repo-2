@@ -1,4 +1,6 @@
-class Player
+using System.Collections.Generic;
+
+public class Player
 {
     public string Name;
     public int CurrentHitPoints;
@@ -9,6 +11,7 @@ class Player
     public Weapon CurrentWeapon;
     public Weapon CurrentArmor;
     public Location CurrentLocation;
+    public Dictionary<int, int> EnemiesDefeated;
 
     public Player(string name, int currentHitPoints, int maximumHitPoints)
     {
@@ -16,5 +19,29 @@ class Player
         CurrentHitPoints = currentHitPoints;
         MaximumHitPoints = maximumHitPoints;
         InBattle = false;
+        Inventory = new List<Inventory>();
+        EnemiesDefeated = new Dictionary<int, int>();
+    }
+
+    public void RecordEnemyDefeat(int enemyId)
+    {
+        if (EnemiesDefeated.ContainsKey(enemyId))
+        {
+            EnemiesDefeated[enemyId]++;
+        }
+        else
+        {
+            EnemiesDefeated.Add(enemyId, 1);
+        }
+    }
+
+    public int GetEnemyDefeats(int enemyId)
+    {
+        if (EnemiesDefeated.ContainsKey(enemyId))
+        {
+            return EnemiesDefeated[enemyId];
+        }
+
+        return 0;
     }
 }
