@@ -28,7 +28,11 @@ public class Location
     }
 
 
+<<<<<<< Updated upstream
      static void DisplayLocation(Location location)
+=======
+    public static void DisplayLocation(Player player)
+>>>>>>> Stashed changes
     {
         Console.WriteLine();
         Console.WriteLine("  P");
@@ -39,6 +43,7 @@ public class Location
         Console.WriteLine(location.Description);
     }
 
+<<<<<<< Updated upstream
     static Location Move(Location currentlocation)
     {
         Console.WriteLine("Which way do you want to move N,E,S,W");
@@ -46,6 +51,16 @@ public class Location
 
         Location destination = GetDestination(currentLocation, way);
     
+=======
+    public static Location Move(Player player)
+    {
+        Console.WriteLine("Which way do you want to move N,E,S,W");
+
+        string way = Console.ReadLine().ToUpper();
+
+        Location destination = GetDestination(player.CurrentLocation, way);
+
+>>>>>>> Stashed changes
         if (destination == null)
         {
             Console.WriteLine("You can't go that way.");
@@ -55,6 +70,22 @@ public class Location
         return destination;
     }
 
+<<<<<<< Updated upstream
+=======
+    public static void Rest(Player player)
+    {
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
+        {
+            player.CurrentHitPoints = player.MaximumHitPoints;
+            Console.WriteLine("You rest at the town square. Your HP is fully restored.");
+        }
+        else
+        {
+            Console.WriteLine("You can only rest at the town square.");
+        }
+    }
+
+>>>>>>> Stashed changes
 
     static Location GetDestination(Location currentlocation, string way)
     {
