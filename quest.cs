@@ -124,9 +124,15 @@ public class Quest
 
         if (quest.Reward != null && quest.Reward.Count > 0)
         {
+            if (player.Inventory.Count == 0)
+            {
+                player.Inventory.Add(new Inventory());
+            }
+
             Console.WriteLine("Rewards earned:");
             foreach (Weapon reward in quest.Reward)
             {
+                player.Inventory[0].AddItem(reward);
                 Console.WriteLine($"- {reward.Name}");
             }
         }

@@ -13,7 +13,7 @@ static class Program
         Console.WriteLine("Welcome to the game!");
         Console.WriteLine("Complete all three quests and return to the guard post.");
 
-        while (!quit)
+        while (!quit && !HasWon(player))
         {
             Console.WriteLine();
             Location.DisplayLocation(player);
@@ -32,7 +32,7 @@ static class Program
             }
             else if (command == "map")
             {
-                Location.DisplayLocation(player);
+                Location.DisplayLocation(player, true);
             }
             else if (command == "search")
             {
@@ -54,6 +54,15 @@ static class Program
             {
                 Console.WriteLine("That is not a valid command.");
             }
+        }
+
+        if (HasWon(player))
+        {
+            Console.WriteLine("You completed all quests and reached the guard post. You win!");
+        }
+        else
+        {
+            Console.WriteLine("Goodbye!");
         }
     }
 
@@ -144,5 +153,14 @@ static class Program
         }
 
         return false;
+    }
+
+    static bool HasWon(Player player)
+    {
+        bool questsCompleted = World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN).IsCompleted
+            && World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).IsCompleted
+            && World.QuestByID(World.QUEST_ID_COLLECT_SPIDER_SILK).IsCompleted;
+
+        return questsCompleted && player.CurrentLocation.ID == World.LOCATION_ID_GUARD_POST;
     }
 }

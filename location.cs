@@ -27,7 +27,7 @@ public class Location
         MonsterLivingHere = monsterlivinghere;
     }
 
-    public static void DisplayLocation(Player player)
+    public static void DisplayLocation(Player player, bool showMap = false)
     {
         Console.WriteLine();
         Console.WriteLine("  P");
@@ -37,13 +37,20 @@ public class Location
         Console.WriteLine("Your at " + player.CurrentLocation.Name);
         Console.WriteLine(player.CurrentLocation.Description);
         Console.WriteLine($"HP: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
+
+        if (showMap)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Map:");
+            Console.WriteLine("                 [Alchemist's garden]");
+            Console.WriteLine("                         |");
+            Console.WriteLine("[Farmer's field] - [Farmhouse] - [Town square] - [Guard post] - [Bridge] - [Spider forest]");
+            Console.WriteLine("                         |");
+            Console.WriteLine("                [Alchemist's hut]");
+            Console.WriteLine();
+            Console.WriteLine("You are currently at: " + player.CurrentLocation.Name);
+        }
     }
-
-    public static Location Move(Player player)
-    {
-        Console.WriteLine("Which way do you want to move N,E,S,W");
-
-        string way = Console.ReadLine().ToUpper();
 
     public static Location Move(Player player)
     {
