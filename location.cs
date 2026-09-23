@@ -27,8 +27,7 @@ public class Location
         MonsterLivingHere = monsterlivinghere;
     }
 
-
-    static void DisplayLocation(Player player)
+    public static void DisplayLocation(Player player)
     {
         Console.WriteLine();
         Console.WriteLine("  P");
@@ -53,11 +52,11 @@ public class Location
 
         string way = Console.ReadLine().ToUpper();
 
-        if (way == "R")
-        {
-            Rest(player);
-            return player.CurrentLocation;
-        }
+    public static Location Move(Player player)
+    {
+        Console.WriteLine("Which way do you want to move N, E, S, W");
+
+        string way = Console.ReadLine().ToUpper();
 
         Location destination = GetDestination(player.CurrentLocation, way);
 
@@ -70,7 +69,7 @@ public class Location
         return destination;
     }
 
-    static void Rest(Player player)
+    public static void Rest(Player player)
     {
         if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
         {
@@ -82,7 +81,6 @@ public class Location
             Console.WriteLine("You can only rest at the town square.");
         }
     }
-
 
     static Location GetDestination(Location currentlocation, string way)
     {
@@ -104,16 +102,5 @@ public class Location
             }
             Console.WriteLine("You can't go that way.");
             return null;
-            
-            
     }
-
-
-
-
-
-
-
 }
-
-
