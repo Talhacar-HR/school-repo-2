@@ -46,6 +46,10 @@ static class Program
             {
                 Quest.ViewQuests();
             }
+            else if (command == "inventory")
+            {
+                ViewInventory(player);
+            }
             else if (command == "quit")
             {
                 quit = true;
@@ -68,7 +72,7 @@ static class Program
 
     static void ShowCommands(Player player)
     {
-        Console.WriteLine("Available commands: move, map, quests, quit");
+        Console.WriteLine("Available commands: move, map, quests, inventory, quit");
 
         if (player.CurrentLocation.MonsterLivingHere != null)
         {
@@ -133,6 +137,18 @@ static class Program
         {
             Console.WriteLine("You have not finished the quest objective yet.");
         }
+    }
+
+    static void ViewInventory(Player player)
+    {
+        if (player.Inventory.Count == 0 || player.Inventory[0].inventory.Count == 0)
+        {
+            Console.WriteLine("Your inventory is empty.");
+            return;
+        }
+
+        Console.WriteLine("Inventory:");
+        player.Inventory[0].ViewInventory();
     }
 
     static bool ObjectiveIsComplete(Player player, int questId)
