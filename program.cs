@@ -4,36 +4,145 @@ static class Program
 {
     static void Main()
     {
-        // Maak de speler aan en geef een startwapen
         Player player = new Player("Hero", 50, 50);
         player.CurrentWeapon = World.WeaponByID(World.WEAPON_ID_RUSTY_SWORD);
         player.CurrentLocation = World.LocationByID(World.LOCATION_ID_HOME);
 
-        BattleMonster battleSystem = new BattleMonster();
+        bool quit = false;
 
-        while (true)
+        Console.WriteLine("Welcome to the game!");
+        Console.WriteLine("Complete all three quests and return to the guard post.");
+
+        while (!quit)
         {
-            Location previousLocation = player.CurrentLocation;
+            Console.WriteLine();
+            Location.DisplayLocation(player);
+            ShowCommands(player);
+            Console.Write("What do you want to do? ");
 
-            Location.DisplayLocation(player.CurrentLocation);
-            player.CurrentLocation = Location.Move(player.CurrentLocation);
+            string command = (Console.ReadLine() ?? "").Trim().ToLower();
 
-            // Controleer of er een monster op de nieuwe locatie is
-            if (player.CurrentLocation.MonsterLivingHere != null)
+            if (command == "move")
             {
-                // Maak een kopie zodat de startstats gereset zijn
-                Monster baseMonster = player.CurrentLocation.MonsterLivingHere;
-                Monster battleMonster = new Monster(
-                    baseMonster.ID,
-                    baseMonster.Name,
-                    baseMonster.MaximumDamage,
-                    baseMonster.MaximumHitPoints,
-                    baseMonster.MaximumHitPoints,
-                    baseMonster.Boss
-                );
-
-                battleSystem.StartBattle(player, battleMonster, previousLocation);
+                player.CurrentLocation = Location.Move(player);
+            }
+            else if (command == "rest")
+            {
+                Location.Rest(player);
+            }
+            else if (command == "map")
+            {
+                Location.DisplayLocation(player);
+            }
+            else if (command == "search")
+            {
+                Monster.SearchForMonster(player);
+            }
+            else if (command == "talk")
+            {
+                TalkToNpc(player);
+            }
+            else if (command == "quests")
+            {
+                Quest.ViewQuests();
+            }
+            else if (command == "quit")
+            {
+                quit = true;
+            }
+            else
+            {
+                Console.WriteLine("That is not a valid command.");
             }
         }
+    }
+
+    static void ShowCommands(Player player)
+    {
+        Console.WriteLine("Available commands: move, map, quests, quit");
+
+        if (player.CurrentLocation.MonsterLivingHere != null)
+        {
+            Console.WriteLine("You can also 'search' for monsters here!");
+        }
+
+        if (player.CurrentLocation.QuestAvailableHere != null)
+        {
+            Console.WriteLine("You can also 'talk' to the NPC here!");
+        }
+
+        if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
+        {
+            Console.WriteLine("You can also 'rest' here!");
+        }
+    }
+
+
+    static void TalkToNpc(Player player)
+    {
+        Quest quest = player.CurrentLocation.QuestAvailableHere;
+
+        if (quest == null)
+        {
+            Console.WriteLine("There is nobody to talk to here.");
+            return;
+        }
+
+        if (quest.IsCompleted)
+        {
+            Console.WriteLine("You already completed this quest.");
+            return;
+        }
+
+        if (!quest.IsActive)
+        {
+            Console.WriteLine("The NPC offers you this quest:");
+            Quest.ViewQuest(quest);
+            Console.Write("Do you accept the quest? (y/n): ");
+
+            string answer = (Console.ReadLine() ?? "").Trim().ToLower();
+
+            if (answer == "y" || answer == "yes")
+            {
+                Quest.StartQuest(quest);
+            }
+            else
+            {
+                Console.WriteLine("You refused the quest.");
+            }
+
+            return;
+        }
+
+        Console.WriteLine("You have already accepted this quest.");
+
+        if (ObjectiveIsComplete(player, quest.ID))
+        {
+            Quest.FinishQuest(player, quest);
+        }
+        else
+        {
+            Console.WriteLine("You have not finished the quest objective yet.");
+        }
+    }
+
+    static bool ObjectiveIsComplete(Player player, int questId)
+    {
+        if (questId == World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN)
+        {
+            return player.GetEnemyDefeats(World.MONSTER_ID_RAT) >= 3;
+        }
+
+        if (questId == World.QUEST_ID_CLEAR_FARMERS_FIELD)
+        {
+            return player.GetEnemyDefeats(World.MONSTER_ID_SNAKE) >= 3;
+        }
+
+        if (questId == World.QUEST_ID_COLLECT_SPIDER_SILK)
+        {
+            return player.GetEnemyDefeats(World.MONSTER_ID_GIANT_SPIDER) >= 3;
+        }
+
+        return false;
     }
 }

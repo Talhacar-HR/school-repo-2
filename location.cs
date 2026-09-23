@@ -27,51 +27,48 @@ public class Location
         MonsterLivingHere = monsterlivinghere;
     }
 
-
-<<<<<<< Updated upstream
-     static void DisplayLocation(Location location)
-=======
     public static void DisplayLocation(Player player)
->>>>>>> Stashed changes
     {
         Console.WriteLine();
         Console.WriteLine("  P");
         Console.WriteLine("  A");
         Console.WriteLine("VFTGBS");
         Console.WriteLine("  H");
-        Console.WriteLine("Your at " + location.Name);
-        Console.WriteLine(location.Description);
+        Console.WriteLine("Your at " + player.CurrentLocation.Name);
+        Console.WriteLine(player.CurrentLocation.Description);
+        Console.WriteLine($"HP: {player.CurrentHitPoints}/{player.MaximumHitPoints}");
     }
 
-<<<<<<< Updated upstream
-    static Location Move(Location currentlocation)
+    static Location Move(Player player)
     {
-        Console.WriteLine("Which way do you want to move N,E,S,W");
+        if(player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
+        {
+            Console.WriteLine("Which way do you want to move N,E,S,W, or R to rest");
+        }
+        else 
+        {
+            Console.WriteLine("Which way do you want to move N,E,S,W");
+        }
+
         string way = Console.ReadLine().ToUpper();
 
-        Location destination = GetDestination(currentLocation, way);
-    
-=======
     public static Location Move(Player player)
     {
-        Console.WriteLine("Which way do you want to move N,E,S,W");
+        Console.WriteLine("Which way do you want to move N, E, S, W");
 
         string way = Console.ReadLine().ToUpper();
 
         Location destination = GetDestination(player.CurrentLocation, way);
 
->>>>>>> Stashed changes
         if (destination == null)
         {
             Console.WriteLine("You can't go that way.");
-            return currentLocation;
+            return player.CurrentLocation;
         }
 
         return destination;
     }
 
-<<<<<<< Updated upstream
-=======
     public static void Rest(Player player)
     {
         if (player.CurrentLocation.ID == World.LOCATION_ID_TOWN_SQUARE)
@@ -85,38 +82,25 @@ public class Location
         }
     }
 
->>>>>>> Stashed changes
-
     static Location GetDestination(Location currentlocation, string way)
     {
             if (way == "N")
             {
-                return currentLocation.LocationToNorth;
+                return currentlocation.LocationToNorth;
             }
             else if (way == "S")
             {
-                return currentLocation.LocationToSouth;
+                return currentlocation.LocationToSouth;
             }
             else if (way == "E")
             {
-                return currentLocation.LocationToEast;
+                return currentlocation.LocationToEast;
             }
             else if (way == "W")
             {
-                return currentLocation.LocationToWest;
+                return currentlocation.LocationToWest;
             }
             Console.WriteLine("You can't go that way.");
             return null;
-            
-            
     }
-
-
-
-
-
-
-
 }
-
-
