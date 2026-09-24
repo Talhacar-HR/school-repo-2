@@ -3,7 +3,6 @@ using System;
 public class BattleMonster
 {
     public bool InBattle = false;
-    public int PlayerLevel = 1;
 
     public void StartBattle(Player player, Monster monster, Location returnLocation)
     {
@@ -43,8 +42,8 @@ public class BattleMonster
                 if (monster.CurrentHitPoints <= 0)
                 {
                     Console.WriteLine($"\nYou defeated the {monster.Name}!");
-                    PlayerLevel++;
-                    Console.WriteLine($"Level Up! You are now level {PlayerLevel}!");
+                    player.Level++;
+                    Console.WriteLine($"Level Up! You are now level {player.Level}!");
 
                     InBattle = false;
                     player.InBattle = false;
@@ -88,7 +87,7 @@ public class BattleMonster
     private void DisplayBattleHUD(Player player, Monster monster)
     {
         Console.WriteLine("\n================ BATTLE HUD ================");
-        Console.WriteLine($"Player: {player.Name} | HP: {player.CurrentHitPoints}/{player.MaximumHitPoints} | Level: {PlayerLevel}");
+        Console.WriteLine($"Player: {player.Name} | HP: {player.CurrentHitPoints}/{player.MaximumHitPoints} | Level: {player.Level}");
 
         if (monster.Boss)
         {
