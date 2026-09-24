@@ -22,41 +22,35 @@ static class Program
 
             string command = (Console.ReadLine() ?? "").Trim().ToLower();
 
-            if (command == "move")
+            switch (command)
             {
-                player.CurrentLocation = Location.Move(player);
-            }
-            else if (command == "rest")
-            {
-                Location.Rest(player);
-            }
-            else if (command == "map")
-            {
-                Location.DisplayLocation(player, true);
-            }
-            else if (command == "search")
-            {
-                Monster.SearchForMonster(player);
-            }
-            else if (command == "talk")
-            {
-                TalkToNpc(player);
-            }
-            else if (command == "quests")
-            {
-                Quest.ViewQuests();
-            }
-            else if (command == "inventory")
-            {
-                ViewInventory(player);
-            }
-            else if (command == "quit")
-            {
-                quit = true;
-            }
-            else
-            {
-                Console.WriteLine("That is not a valid command.");
+                case "move":
+                    player.CurrentLocation = Location.Move(player);
+                    break;
+                case "rest":
+                    Location.Rest(player);
+                    break;
+                case "map":
+                    Location.DisplayLocation(player, true);
+                    break;
+                case "search":
+                    Monster.SearchForMonster(player);
+                    break;
+                case "talk":
+                    TalkToNpc(player);
+                    break;
+                case "quests":
+                    Quest.ViewQuests();
+                    break;
+                case "inventory":
+                    ViewInventory(player);
+                    break;
+                case "quit":
+                    quit = true;
+                    break;
+                default:
+                    Console.WriteLine("That is not a valid command.");
+                    break;
             }
         }
 
