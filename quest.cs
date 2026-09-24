@@ -136,5 +136,17 @@ public class Quest
                 Console.WriteLine($"- {reward.Name}");
             }
         }
+
+        // Na de eerste twee quests krijgt de speler een beter wapen voor de spider
+        if (quest.ID != World.QUEST_ID_COLLECT_SPIDER_SILK
+            && World.QuestByID(World.QUEST_ID_CLEAR_ALCHEMIST_GARDEN).IsCompleted
+            && World.QuestByID(World.QUEST_ID_CLEAR_FARMERS_FIELD).IsCompleted)
+        {
+            Weapon ironSword = World.WeaponByID(World.WEAPON_ID_IRON_SWORD);
+            Console.WriteLine("For clearing the garden and the field, you receive a better weapon!");
+            player.Inventory[0].AddItem(ironSword);
+            player.CurrentWeapon = ironSword;
+            Console.WriteLine($"You equipped the {ironSword.Name}.");
+        }
     }
 }
