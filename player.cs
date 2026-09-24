@@ -6,6 +6,7 @@ public class Player
     public int CurrentHitPoints;
     public int MaximumHitPoints;
     public int Attack;
+    public int Level;
     public bool InBattle;
     public List<Inventory> Inventory;
     public Weapon CurrentWeapon;
@@ -18,6 +19,8 @@ public class Player
         Name = name;
         CurrentHitPoints = currentHitPoints;
         MaximumHitPoints = maximumHitPoints;
+        Attack = 5;
+        Level = 1;
         InBattle = false;
         Inventory = new List<Inventory>();
         EnemiesDefeated = new Dictionary<int, int>();

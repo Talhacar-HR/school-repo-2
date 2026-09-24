@@ -51,7 +51,7 @@ public static class World
     {
         Weapons.Add(new Weapon(WEAPON_ID_RUSTY_SWORD, "Rusted Sword", 5, 0, 0, true, false, "WEAPON", "An old, rusted sword. Raises damage by 10."));
         Weapons.Add(new Weapon(WEAPON_ID_CLUB, "Club", 10, 0, 0, true, false, "WEAPON", "A trusty wooden club. Raises damage by 10."));
-        Weapons.Add(new Weapon(WEAPON_ID_IRON_SWORD, "Iron Sword", 10, 0, 20, true, false, "WEAPON", "An excellent iron sword. Raises damage by 10, and gives 20 CRIT."));
+        Weapons.Add(new Weapon(WEAPON_ID_IRON_SWORD, "Iron Sword", 25, 0, 20, true, false, "WEAPON", "An excellent iron sword. Raises damage by 25, and gives 20 CRIT."));
         Weapons.Add(new Weapon(WEAPON_ID_COIN_POUCH, "Coin Pouch", 0, 0, 0, false, false, "OTHER", "A pouch with coins. Spend wisely."));
         Weapons.Add(new Weapon(WEAPON_ID_PROOF_OF_GRIT, "Proof of Grit", 0, 0, 0, false, false, "OTHER", "A Proof of Grit obtained by completely quests. Needed to pass the guard."));
         Weapons.Add(new Weapon(WEAPON_ID_FLASK_OF_HEALING, "Flask of Healing", 0, 15, 0, false, true, "OTHER", "A flask of healing. Heals 15 HP."));

@@ -48,8 +48,9 @@ public class Monster
             monster.Name,
             monster.MaximumDamage,
             monster.MaximumHitPoints,
-            monster.MaximumHitPoints,
-            monster.Boss);
+            monster.MaximumHitPoints);
+        // Stats zijn al verdubbeld bij het origineel, dus Boss los zetten
+        battleMonster.Boss = monster.Boss;
 
         Console.WriteLine("You searched the area and found a " + monster.Name + ".");
 
