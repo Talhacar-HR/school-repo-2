@@ -127,7 +127,6 @@ public class Location
             {
                 return currentlocation.LocationToWest;
             }
-            Console.WriteLine("You can't go that way.");
             return null;
     }
 }
