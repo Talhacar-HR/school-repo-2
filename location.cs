@@ -74,6 +74,18 @@ public class Location
             return player.CurrentLocation;
         }
 
+        if (destination.ID == World.LOCATION_ID_BRIDGE)
+        {
+            Quest spiderQuest = destination.QuestAvailableHere;
+
+            if (spiderQuest != null && !spiderQuest.IsActive && !spiderQuest.IsCompleted)
+            {
+                Console.WriteLine("You crossed the bridge and received a new quest:");
+                Quest.ViewQuest(spiderQuest);
+                Quest.StartQuest(spiderQuest);
+            }
+        }
+
         return destination;
     }
 
